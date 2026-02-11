@@ -1,0 +1,6 @@
+beans:
+    path: .beans
+    prefix: do-
+    id_length: 3
+    default_status: draft
+    default_type: task
