@@ -67,7 +67,7 @@ fi
 
 # 2. Handle git worktree and branch
 REPO_NAME=$(basename "$REPO_ROOT")
-BRANCH_NAME="${REPO_NAME}-${BEAN_ID}"
+BRANCH_NAME="${BEAN_ID}"
 # Create worktree in a sibling directory
 WORKTREE_PATH="$REPO_ROOT/../${BRANCH_NAME}"
 
