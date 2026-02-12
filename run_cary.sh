@@ -34,36 +34,60 @@ DOOZERS_ROOT=$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)
 REPO_ROOT=$(git rev-parse --show-toplevel)
 cd "$REPO_ROOT"
 
-# 1. Check if bean and children are blocked
-echo "Checking if $BEAN_ID and its children are blocked..."
-QUERY='{
-  bean(id: "'$BEAN_ID'") {
-    id
-    blockedBy(filter: { excludeStatus: ["completed"] }) { id }
-    children {
-      id
-      blockedBy(filter: { excludeStatus: ["completed"] }) { id }
-    }
-  }
-}'
+# 1. Check if bean and children are blocked, follow blocking chain if necessary
+while true; do
+    echo "Checking if $BEAN_ID and its children are blocked..."
+    QUERY='{
+      bean(id: "'$BEAN_ID'") {
+        id
+        blockedBy(filter: { excludeStatus: ["completed"] }) { id }
+        children {
+          id
+          blockedBy(filter: { excludeStatus: ["completed"] }) { id }
+        }
+      }
+    }'
 
-RESULT=$(beans query --json "$QUERY")
+    RESULT=$(beans query --json "$QUERY")
 
-# Check if bean exists
-if [ "$(echo "$RESULT" | jq '.bean')" == "null" ]; then
-    echo "Error: Bean $BEAN_ID not found."
-    exit 1
-fi
+    # Check if bean exists
+    if [ "$(echo "$RESULT" | jq '.bean')" == "null" ]; then
+        echo "Error: Bean $BEAN_ID not found."
+        exit 1
+    fi
 
-# Extract any blockers from the bean itself or its children
-BLOCKERS=$(echo "$RESULT" | jq -r '
-  [.bean.blockedBy[].id, (.bean.children[].blockedBy[].id // empty)] | unique | join(", ")
-' | sed 's/^, //; s/ ,$//')
+    # Extract all IDs in the unit (bean + children)
+    UNIT_IDS=$(echo "$RESULT" | jq -r '
+      [.bean.id, .bean.children[].id] | unique | .[]
+    ' 2>/dev/null || echo "$BEAN_ID")
 
-if [ -n "$BLOCKERS" ]; then
-    echo "Error: Cannot proceed. Bean $BEAN_ID or its children are blocked by: $BLOCKERS"
-    exit 1
-fi
+    # Extract all blockers
+    BLOCKERS=$(echo "$RESULT" | jq -r '
+      [.bean.blockedBy[].id, .bean.children[].blockedBy[].id] | unique | .[]
+    ' 2>/dev/null || true)
+
+    if [ -z "$BLOCKERS" ]; then
+        break
+    fi
+
+    # Check for external blockers
+    EXTERNAL_BLOCKER=""
+    while read -r b; do
+        if [ -n "$b" ] && ! echo "$UNIT_IDS" | grep -qx "$b"; then
+            EXTERNAL_BLOCKER="$b"
+            break
+        fi
+    done <<< "$BLOCKERS"
+
+    if [ -n "$EXTERNAL_BLOCKER" ]; then
+        echo "Bean $BEAN_ID is blocked by external task $EXTERNAL_BLOCKER. Switching to $EXTERNAL_BLOCKER..."
+        BEAN_ID=$EXTERNAL_BLOCKER
+        continue
+    fi
+    
+    # All blockers are internal. We can proceed.
+    break
+done
 
 # 2. Handle git worktree and branch
 REPO_NAME=$(basename "$REPO_ROOT")
