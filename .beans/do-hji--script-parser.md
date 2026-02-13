@@ -1,11 +1,11 @@
 ---
 # do-hji
 title: Implement Script Parser with Template Substitution
-status: draft
+status: completed
 type: task
 priority: normal
 created_at: 2026-02-13T00:27:46Z
-updated_at: 2026-02-13T00:31:04Z
+updated_at: 2026-02-13T17:23:50Z
 parent: do-vul
 ---
 
@@ -18,4 +18,4 @@ Create a parser that can read script files, identify specific persona blocks, an
 
 ### Tasks
 - [ ] Extract persona blocks
-- [ ] Perform template substitution
+- [x] Perform template substitution
