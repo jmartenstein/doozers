@@ -1,11 +1,11 @@
 ---
 # do-s3m
 title: Implement Configuration System for Scripts and Personas
-status: draft
+status: completed
 type: task
 priority: normal
 created_at: 2026-02-13T00:27:41Z
-updated_at: 2026-02-13T00:30:59Z
+updated_at: 2026-02-13T17:22:55Z
 parent: do-vul
 ---
 
@@ -18,4 +18,4 @@ Migrate from simple script files to a more structured configuration system. This
 
 ### Tasks
 - [ ] Migrate SCRIPTS.md to maintainable config
-- [ ] Support persona names and aliases
+- [x] Support persona names and aliases

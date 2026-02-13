@@ -1,11 +1,11 @@
 ---
 # do-m2e
 title: Implement Bean Client for Task Integration
-status: draft
+status: completed
 type: task
 priority: high
 created_at: 2026-02-13T00:27:31Z
-updated_at: 2026-02-13T00:30:48Z
+updated_at: 2026-02-13T17:18:54Z
 parent: do-vul
 ---
 
@@ -19,4 +19,4 @@ Create a Go wrapper for the `beans` CLI tool to allow the program to query task 
 ### Tasks
 - [ ] Implement wrapper for beans query
 - [ ] Check if task is blocked
-- [ ] Follow blocking chain
+- [x] Follow blocking chain
