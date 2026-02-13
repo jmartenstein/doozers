@@ -18,25 +18,25 @@ The `doozers` project is a Go-based framework (`dv` CLI) designed to orchestrate
 - [ ] Scaffold `dv` root command and initial subcommands (e.g., `dv run`).
 
 ### 2. "Coder" Logic Migration (`run_cary.sh` -> Go)
-- [ ] **Bean Client**: Implement a wrapper for `beans query` to:
+- [x] **Bean Client**: Implement a wrapper for `beans query` to:
     - Check if a task is blocked.
     - Recursively follow the blocking chain to find the actionable task.
-- [ ] **Git Wrapper**: Implement Go functions to:
+- [x] **Git Wrapper**: Implement Go functions to:
     - Identify repository roots.
     - Create/manage Git worktrees (`git worktree add`).
     - Handle branch creation and switching.
-- [ ] **Config File**: Migrate `SCRIPTS.md` to a readable maintainable config file that:
+- [x] **Config File**: Migrate `SCRIPTS.md` to a readable maintainable config file that:
     - Can be easily parsed
     - Can be edited and modified either by an agent or by a human.
     - Provides a persona name based on function, for example "Coder"
     - Each provider can also use an alternate alias such as "cary"
-- [ ] **Script Parser**: Create a parser for the config file that:
+- [x] **Script Parser**: Create a parser for the config file that:
     - Extracts specific persona blocks (e.g., everything under `# Coder / Cary`).
     - Performs template substitution (e.g., replacing `${TASK_ID}`).
-- [ ] **Agent Runner**: Implement the execution logic for the Gemini CLI:
+- [x] **Agent Runner**: Implement the execution logic for the Gemini CLI:
     - Change directory to the worktree.
     - Execute `gemini --prompt "..." --approval-mode yolo`.
-- [ ] **Outcome Sharing**: Implement the final "share" step:
+- [x] **Outcome Sharing**: Implement the final "share" step:
     - `git add .`, `git commit`, and `git push`.
 
 ### 3. CLI Interface Design
