@@ -8,7 +8,11 @@ The doozers project provides an extensible framework for orchestrating one or mo
 
 # Overview
 
-The core of the doozers utility is a number of personas that are following scripts to complete tasks. Each script centers around 3 action verbs: prep, make and share. The personas are named after their primary function, such as "Coder / Cary" for a coding agent, or "Architect / Archie" for a planning and design agent. Each of these verbs will pull from a configurable script file (see the SCRIPTS.md file documentation) that get fed into the agent. In addition, other shell commands may be run, such as git or beans or beads.
+The core of the doozers utility is a number of personas that are following scripts to complete tasks. Each script centers around 3 action verbs: prep, make and share.
+
+Personas are named after their primary function, such as "Coder / Cary" for a coding agent, or "Architect / Archie" for a planning and design agent. Each of these verbs will pull from a configurable script file (see the SCRIPTS.md file documentation) that get fed into the agent.
+
+In addition, other shell commands may be run, such as git or beans or beads.
 
 # Requirements
 
