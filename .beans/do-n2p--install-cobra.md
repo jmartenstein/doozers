@@ -18,4 +18,5 @@ Add the `cobra` library to the project. Cobra is a library for creating powerful
 ### Tasks
 - [x] Run `go get github.com/spf13/cobra`
 
-## Summary of Changes\n- Installed `cobra` library.
+## Summary of Changes
+- Installed `cobra` library.

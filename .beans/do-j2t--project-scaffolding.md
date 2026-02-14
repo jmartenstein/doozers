@@ -20,4 +20,7 @@ Initialize the Go project structure to provide a solid foundation for the `dv` C
 - [x] Install Cobra
 - [x] Scaffold dv root command
 
-## Summary of Changes\n- Initialized Go module.\n- Installed Cobra CLI framework.\n- Scaffolded the `dv` CLI root command with a `run` placeholder.
+## Summary of Changes
+- Initialized Go module.
+- Installed Cobra CLI framework.
+- Scaffolded the `dv` CLI root command with a `run` placeholder.

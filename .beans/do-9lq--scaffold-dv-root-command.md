@@ -21,4 +21,7 @@ Create the basic entry point for the `dv` CLI. This involves creating a `main.go
 - [x] Implement `cmd/root.go`
 - [x] Add initial subcommands (placeholders)
 
-## Summary of Changes\n- Created `main.go` and `cmd/root.go`.\n- Added `run` subcommand as a placeholder.\n- Verified CLI execution with `go run main.go`.
+## Summary of Changes
+- Created `main.go` and `cmd/root.go`.
+- Added `run` subcommand as a placeholder.
+- Verified CLI execution with `go run main.go`.

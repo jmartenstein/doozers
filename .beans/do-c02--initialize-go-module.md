@@ -18,4 +18,5 @@ Initialize a new Go module named `github.com/jmartenstein/doozers`. This is the 
 ### Tasks
 - [x] Run `go mod init github.com/jmartenstein/doozers`
 
-## Summary of Changes\n- Initialized Go module `github.com/jmartenstein/doozers`.
+## Summary of Changes
+- Initialized Go module `github.com/jmartenstein/doozers`.
