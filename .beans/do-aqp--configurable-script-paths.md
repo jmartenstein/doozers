@@ -1,11 +1,11 @@
 ---
 # do-aqp
 title: Support Configurable Script and Agent Paths
-status: draft
+status: completed
 type: task
 priority: low
 created_at: 2026-02-13T00:28:14Z
-updated_at: 2026-02-13T00:31:37Z
+updated_at: 2026-02-14T00:04:02Z
 parent: do-h6e
 ---
 
@@ -17,5 +17,7 @@ Enhance the CLI to support custom paths for scripts and agent configurations. Th
 - [ ] Validation ensures that specified paths exist and are accessible.
 
 ### Tasks
-- [ ] Support custom script paths
-- [ ] Support agent defaults
+- [x] Support custom script paths
+- [x] Support agent defaults
+
+## Summary of Changes\n- Added --script and --script-path flags to override script content.\n- Added --agent flag to override agent executable.\n- Added DefaultAgent to config and Agent to Persona config.
