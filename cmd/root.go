@@ -7,6 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	dryRun bool
+)
+
 var rootCmd = &cobra.Command{
 	Use:   "dv",
 	Short: "dv is a CLI tool for managing doozers",
@@ -18,4 +22,8 @@ func Execute() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+}
+
+func init() {
+	rootCmd.PersistentFlags().BoolVar(&dryRun, "dry-run", false, "Simulate actions without making any changes")
 }

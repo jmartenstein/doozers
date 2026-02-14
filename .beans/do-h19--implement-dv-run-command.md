@@ -1,11 +1,11 @@
 ---
 # do-h19
 title: Implement 'dv run' Command for Task Execution
-status: draft
+status: completed
 type: task
 priority: normal
 created_at: 2026-02-13T00:28:04Z
-updated_at: 2026-02-13T00:31:26Z
+updated_at: 2026-02-14T00:04:07Z
 parent: do-h6e
 ---
 
@@ -17,4 +17,8 @@ Implement the primary `run` command for the `dv` CLI. This command is responsibl
 - [ ] Appropriate error messages are shown for invalid personas or task IDs.
 
 ### Tasks
-- [ ] Implement `dv run <persona> <task_id>`
+- [x] Implement `dv run <persona> <task_id>`
+
+## Summary of Changes
+- Fully implemented 'dv run' command with flexible argument parsing.
+- Added validation for personas and task IDs.

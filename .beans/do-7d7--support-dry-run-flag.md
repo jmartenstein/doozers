@@ -1,11 +1,11 @@
 ---
 # do-7d7
 title: Support '--dry-run' Flag for Safe Execution
-status: draft
+status: completed
 type: task
 priority: low
 created_at: 2026-02-13T00:28:09Z
-updated_at: 2026-02-13T00:31:32Z
+updated_at: 2026-02-14T00:04:13Z
 parent: do-h6e
 ---
 
@@ -17,4 +17,8 @@ Add a global `--dry-run` flag to the `dv` CLI. This flag should prevent any actu
 - [ ] The user receives clear feedback that they are in dry-run mode.
 
 ### Tasks
-- [ ] Add global `--dry-run` flag
+- [x] Add global `--dry-run` flag
+
+## Summary of Changes
+- Added global --dry-run flag to root command.
+- Implemented dry-run logic in 'run' command to skip execution and outcome sharing.
