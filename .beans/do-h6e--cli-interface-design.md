@@ -20,4 +20,8 @@ Design and implement the user-facing command-line interface for the `dv` tool. T
 - [x] Support dry-run flag
 - [x] Configurable script paths
 
-## Summary of Changes\n- Designed and implemented the 'dv' CLI interface.\n- Implemented 'dv run' command for orchestrated agent execution.\n- Added global --dry-run flag for safe simulation.\n- Supported configurable script paths and agent overrides via flags and config file.
+## Summary of Changes
+- Designed and implemented the 'dv' CLI interface.
+- Implemented 'dv run' command for orchestrated agent execution.
+- Added global --dry-run flag for safe simulation.
+- Supported configurable script paths and agent overrides via flags and config file.

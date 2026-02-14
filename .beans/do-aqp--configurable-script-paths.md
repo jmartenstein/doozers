@@ -20,4 +20,7 @@ Enhance the CLI to support custom paths for scripts and agent configurations. Th
 - [x] Support custom script paths
 - [x] Support agent defaults
 
-## Summary of Changes\n- Added --script and --script-path flags to override script content.\n- Added --agent flag to override agent executable.\n- Added DefaultAgent to config and Agent to Persona config.
+## Summary of Changes
+- Added --script and --script-path flags to override script content.
+- Added --agent flag to override agent executable.
+- Added DefaultAgent to config and Agent to Persona config.

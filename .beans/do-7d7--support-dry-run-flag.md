@@ -19,4 +19,6 @@ Add a global `--dry-run` flag to the `dv` CLI. This flag should prevent any actu
 ### Tasks
 - [x] Add global `--dry-run` flag
 
-## Summary of Changes\n- Added global --dry-run flag to root command.\n- Implemented dry-run logic in 'run' command to skip execution and outcome sharing.
+## Summary of Changes
+- Added global --dry-run flag to root command.
+- Implemented dry-run logic in 'run' command to skip execution and outcome sharing.

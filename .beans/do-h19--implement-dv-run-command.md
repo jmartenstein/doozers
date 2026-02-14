@@ -19,4 +19,6 @@ Implement the primary `run` command for the `dv` CLI. This command is responsibl
 ### Tasks
 - [x] Implement `dv run <persona> <task_id>`
 
-## Summary of Changes\n- Fully implemented 'dv run' command with flexible argument parsing.\n- Added validation for personas and task IDs.
+## Summary of Changes
+- Fully implemented 'dv run' command with flexible argument parsing.
+- Added validation for personas and task IDs.
