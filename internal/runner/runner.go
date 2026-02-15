@@ -19,7 +19,7 @@ func NewRunner(yolo bool) *Runner {
 }
 
 func (r *Runner) Run(prompt string, dir string) error {
-	args := []string{"chat", "-p", prompt}
+	args := []string{"-p", prompt}
 	if r.Yolo {
 		args = append(args, "--yolo")
 	}
