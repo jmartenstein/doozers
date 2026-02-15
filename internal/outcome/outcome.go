@@ -35,9 +35,15 @@ func (m *Manager) Share(taskID, summary string) error {
 		return err
 	}
 
-	// Optionally push, but for now we might skip or make it configurable
-	// branch, _ := m.git.CurrentBranch()
-	// m.git.Push("origin", branch)
+	branch, err := m.git.CurrentBranch()
+	if err != nil {
+		return fmt.Errorf("failed to get current branch: %w", err)
+	}
+
+	fmt.Printf("Pushing changes to origin %s...\n", branch)
+	if err := m.git.Push("origin", branch); err != nil {
+		return fmt.Errorf("failed to push changes: %w", err)
+	}
 
 	return nil
 }

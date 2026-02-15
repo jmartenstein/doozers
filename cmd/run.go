@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/jmartenstein/doozers/internal/beans"
 	"github.com/jmartenstein/doozers/internal/config"
@@ -114,40 +115,75 @@ var runCmd = &cobra.Command{
 
 		script := parser.Substitute(scriptContent, vars)
 
+		g := git.NewGit()
+		repoRoot, err := g.GetRepoRoot()
+		if err != nil {
+			fmt.Printf("Error getting repo root: %v\n", err)
+			os.Exit(1)
+		}
+
+		worktreePath := filepath.Join(repoRoot, "..", taskID)
+		branchName := taskID
+
 		if dryRun {
+			if _, err := os.Stat(worktreePath); err == nil {
+				fmt.Printf("[DRY RUN] Worktree directory '%s' already exists.\n", worktreePath)
+			} else if g.BranchExists(branchName) {
+				fmt.Printf("[DRY RUN] Branch '%s' already exists. Would add worktree at '%s' using existing branch.\n", branchName, worktreePath)
+			} else {
+				fmt.Printf("[DRY RUN] Would create git worktree for branch '%s' at '%s'\n", branchName, worktreePath)
+			}
 			fmt.Println("DRY RUN: The following script would be executed:")
 			fmt.Println("--------------------------------")
 			fmt.Println(script)
 			fmt.Println("--------------------------------")
 			fmt.Printf("Agent: %s, YOLO: %v\n", selectedAgent, yolo)
-			fmt.Println("Outcome sharing would be triggered after successful execution.")
+			fmt.Printf("Worktree: %s\n", worktreePath)
+			fmt.Println("Outcome sharing and push would be triggered after successful execution.")
 			return
 		}
 
-		fmt.Printf("Running script for task %s...\n", taskID)
+		if _, err := os.Stat(worktreePath); err == nil {
+			fmt.Printf("Worktree directory '%s' already exists. Skipping creation.\n", worktreePath)
+		} else if g.BranchExists(branchName) {
+			fmt.Printf("Branch '%s' already exists. Adding worktree at '%s' using existing branch...\n", branchName, worktreePath)
+			if err := g.AddWorktree(worktreePath, branchName); err != nil {
+				fmt.Printf("Error adding worktree: %v\n", err)
+				os.Exit(1)
+			}
+		} else {
+			fmt.Printf("Creating git worktree for branch '%s' at '%s'...\n", branchName, worktreePath)
+			if err := g.CreateWorktree(worktreePath, branchName); err != nil {
+				fmt.Printf("Error creating worktree: %v\n", err)
+				os.Exit(1)
+			}
+		}
+
+		fmt.Printf("Running script for task %s in worktree %s...\n", taskID, worktreePath)
 
 		r := runner.NewRunner(yolo)
 		r.Executable = selectedAgent
 
-		if err := r.Run(script, "."); err != nil {
+		if err := r.Run(script, worktreePath); err != nil {
 			fmt.Printf("Error running agent: %v\n", err)
 			os.Exit(1)
 		}
 
-		fmt.Println("Agent execution completed successfully. Sharing outcome...")
-		g := git.NewGit()
-		m := outcome.NewManager(g)
-		if err := m.Share(taskID, "Completed task"); err != nil {
+		fmt.Println("Agent execution completed successfully. Sharing outcome and pushing...")
+		gWorktree := git.NewGit()
+		gWorktree.Dir = worktreePath
+		m := outcome.NewManager(gWorktree)
+		if err := m.Share(taskID, "Implementation for "+taskID); err != nil {
 			fmt.Printf("Error sharing outcome: %v\n", err)
 			os.Exit(1)
 		}
 
-		fmt.Println("Outcome shared successfully.")
+		fmt.Println("Outcome shared and pushed successfully.")
 	},
 }
 
 func init() {
-	runCmd.Flags().BoolVar(&yolo, "yolo", false, "Enable YOLO mode (automated execution)")
+	runCmd.Flags().BoolVar(&yolo, "yolo", true, "Enable YOLO mode (automated execution)")
 	runCmd.Flags().StringVar(&scriptStr, "script", "", "Provide the script content directly")
 	runCmd.Flags().StringVar(&scriptPath, "script-path", "", "Path to a file containing the script")
 	runCmd.Flags().StringVar(&agent, "agent", "gemini", "Override the agent executable")

@@ -7,7 +7,9 @@ import (
 	"strings"
 )
 
-type Git struct{}
+type Git struct {
+	Dir string
+}
 
 func NewGit() *Git {
 	return &Git{}
@@ -15,6 +17,9 @@ func NewGit() *Git {
 
 func (g *Git) run(args ...string) (string, error) {
 	cmd := exec.Command("git", args...)
+	if g.Dir != "" {
+		cmd.Dir = g.Dir
+	}
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out
@@ -35,6 +40,16 @@ func (g *Git) GetRepoRoot() (string, error) {
 func (g *Git) CreateWorktree(path, branch string) error {
 	_, err := g.run("worktree", "add", "-b", branch, path)
 	return err
+}
+
+func (g *Git) AddWorktree(path, branch string) error {
+	_, err := g.run("worktree", "add", path, branch)
+	return err
+}
+
+func (g *Git) BranchExists(branch string) bool {
+	_, err := g.run("rev-parse", "--verify", branch)
+	return err == nil
 }
 
 func (g *Git) RemoveWorktree(path string) error {

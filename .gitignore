@@ -31,5 +31,8 @@ go.work.sum
 # .idea/
 # .vscode/
 
+# Output
+bin/
+
 # Miscellaneous Files
 PR_SUMMARY.md
