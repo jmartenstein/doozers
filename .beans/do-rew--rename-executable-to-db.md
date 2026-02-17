@@ -3,9 +3,9 @@
 title: Rename executable to dv
 status: todo
 type: task
-priority: high
+priority: critical
 created_at: 2026-02-15T20:00:38Z
-updated_at: 2026-02-16T20:12:11Z
+updated_at: 2026-02-17T23:09:37Z
 blocking:
     - do-7gv
 ---

@@ -3,9 +3,9 @@
 title: Backend Integration for Model Parameter
 status: todo
 type: feature
-priority: normal
+priority: high
 created_at: 2026-02-16T20:10:03Z
-updated_at: 2026-02-16T20:10:03Z
+updated_at: 2026-02-17T23:09:53Z
 parent: do-7gv
 ---
 
