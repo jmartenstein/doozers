@@ -3,9 +3,9 @@
 title: CLI Support for Model Selection
 status: todo
 type: feature
-priority: normal
+priority: high
 created_at: 2026-02-16T20:09:23Z
-updated_at: 2026-02-16T20:11:50Z
+updated_at: 2026-02-17T23:09:48Z
 parent: do-7gv
 blocking:
     - do-r46

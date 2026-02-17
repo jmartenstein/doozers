@@ -3,9 +3,9 @@
 title: Add "model" parameter to specify gemini model
 status: todo
 type: epic
-priority: normal
+priority: high
 created_at: 2026-02-16T17:49:44Z
-updated_at: 2026-02-16T20:09:04Z
+updated_at: 2026-02-17T23:09:43Z
 ---
 
 Add an optional feature that allows a user to specify a particular model to use,
