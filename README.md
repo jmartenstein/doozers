@@ -31,13 +31,13 @@ The language and structure of this project will be built with [John Boyd's OODA 
 To build the `dv` utility, ensure you have Go installed (version 1.24.8 or later).
 
 ```bash
-go build -o dv .
+go build -o dv ./cmd/dv
 ```
 
 This will create a `dv` executable in the current directory. You can also install it to your `$GOPATH/bin`:
 
 ```bash
-go install .
+go install ./cmd/dv
 ```
 
 ## Usage
