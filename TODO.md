@@ -17,6 +17,7 @@ The `doozers` project is a Go-based framework (`dv` CLI) designed to orchestrate
 - [x] **Initialize Go module**: `go mod init github.com/jmartenstein/doozers`.
 - [x] **Install Cobra**: `go get github.com/spf13/cobra`.
 - [x] **Scaffold `dv` root command**: Implement initial subcommands (e.g., `dv run`).
+- [x] **Rename executable to `dv`**: Restructured `cmd/` to `cmd/dv/` and moved `main.go`.
 
 ### 2. "Coder" Logic Migration (Initial Implementation)
 - [x] **Bean Client**: Implement a wrapper for `beans query` to check task status and find root causes.
