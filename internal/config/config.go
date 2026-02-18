@@ -7,12 +7,12 @@ import (
 )
 
 type Persona struct {
-	Name    string   `yaml:"name"`
-	Aliases []string `yaml:"aliases"`
-	Script  string   `yaml:"script"`
-	Agent   string   `yaml:"agent"`
+        Name            string   `yaml:"name"`
+        Aliases         []string `yaml:"aliases"`
+        Script          string   `yaml:"script"`
+        Agent           string   `yaml:"agent"`
+        UseGitWorktree  bool     `yaml:"use_git_worktree"`
 }
-
 type Config struct {
 	Personas     []Persona `yaml:"personas"`
 	DefaultAgent string    `yaml:"default_agent"`
