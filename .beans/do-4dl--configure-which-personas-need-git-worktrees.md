@@ -1,11 +1,11 @@
 ---
 # do-4dl
 title: Configure which personas need git worktrees
-status: todo
+status: completed
 type: feature
 priority: high
 created_at: 2026-02-17T22:58:51Z
-updated_at: 2026-02-17T23:10:23Z
+updated_at: 2026-02-18T00:31:06Z
 blocking:
     - do-8k0
 ---
