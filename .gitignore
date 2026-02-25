@@ -29,6 +29,8 @@ go.work.sum
 dv
 !dv/
 
+.beans/archive
+
 # Editor/IDE
 # .idea/
 # .vscode/
