@@ -51,16 +51,29 @@ Transition the issue and start coding.
 ## 5. Completion and Review
 Finalize the work and request a review.
 
-1. **Validate:** Run all project tests (e.g., `rake test`).
-2. **Clean up:** Remove `TODO.md` before merging.
+1. **Validate:** Run all project tests and ensure they pass.
+2. **Document:** Update the Pull Request description with a detailed summary of changes, implementation details, and test results.
+   ```bash
+   gh pr edit --body "## Summary
+   Brief description of changes.
+
+   ## Changes
+   - Detail 1
+   - Detail 2
+
+   ## Testing
+   - [x] Unit tests passed
+   - [x] Integration tests passed"
+   ```
+3. **Clean up:** Remove `TODO.md` before merging.
    ```bash
    rm TODO.md
    git add TODO.md
    git commit -m "Remove TODO.md before PR review"
    git push
    ```
-3. **Mark Ready:** `gh pr ready`
-4. **Request Review:** `gh pr edit --add-reviewer <username>` (if applicable).
+4. **Mark Ready:** `gh pr ready`
+5. **Request Review:** `gh pr edit --add-reviewer <username>` (if applicable).
 
 ---
 
